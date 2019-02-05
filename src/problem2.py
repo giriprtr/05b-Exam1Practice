@@ -77,7 +77,7 @@ def problem2a(circle, rectangle, window):
     """
     See   problem2a_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
-    
+
     What comes in:
       -- An rg.Circle.
       -- An rg.Rectangle.
@@ -96,14 +96,13 @@ def problem2a(circle, rectangle, window):
            then renders the window again
            (with no waiting for a click from the user this time).
       Must  ** NOT close **   the window.
-
     Type hints:
       :type circle:    rg.Circle
       :type rectangle: rg.Rectangle
       :type window:    rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -111,6 +110,22 @@ def problem2a(circle, rectangle, window):
     #    DIFFICULTY:      6
     #    TIME ESTIMATE:   10 to 15 minutes.
     # -------------------------------------------------------------------------
+
+    upper_right = rectangle.get_upper_right_corner()
+    lower_left = rectangle.get_lower_left_corner()
+    color = rectangle.__getattribute__('outline_color')
+
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    line = rg.Line(upper_right, lower_left)
+    line.arrow = "last"
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+    circle.fill_color = color
+    window.render()
 
 def run_test_problem2b():
     """ Tests the  problem2b   function. """

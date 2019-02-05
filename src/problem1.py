@@ -106,7 +106,7 @@ def sum_of_digits(number):
 def run_test_problem1a():
     """ Tests the   problem1a   function. """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement this TEST function.
+    # DONE: 3. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   4   ** tests (we wrote two for you).
     # -------------------------------------------------------------------------
@@ -149,6 +149,23 @@ def run_test_problem1a():
     #   print('       actual:  ', actual)
     # -------------------------------------------------------------------------
 
+    print("")
+
+    # Test 3:
+    expected = -1.364999214
+    actual = problem1a(6, 7)
+    print('Test 3 expected:', expected)
+    print('       actual:  ', actual)
+
+    print("")
+
+    # Test 4:
+    expected = 1.955209482 # This is APPROXIMATELY the correct answer.
+    actual = problem1a(1, 3)
+    print('Test 4 expected:', expected)
+    print('       actual:  ', actual)
+
+
 
 def problem1a(m, n):
     """
@@ -168,7 +185,7 @@ def problem1a(m, n):
       -- If m is 30 and n is 100, the correct answer is about 1.278.
     """
     # -------------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -177,11 +194,19 @@ def problem1a(m, n):
     #    TIME ESTIMATE:   10 minutes.
     # -------------------------------------------------------------------------
 
+    import math
+
+    m = abs(m)
+    n = abs(n)
+    total = 0
+    for k in range((n**2)-(m**2) + 1):
+        total = total + math.sin((m**2)+k)
+    return total
 
 def run_test_problem1b():
     """ Tests the   problem1b   function. """
     # -------------------------------------------------------------------------
-    # TODO: 5. Implement this TEST function.
+    # DONE: 5. Implement this TEST function.
     #   It TESTS the  problem1b  function defined below.
     #   Include at least **   4   ** tests.  Use the usual form:
     #
@@ -198,6 +223,30 @@ def run_test_problem1b():
     print('--------------------------------------------------')
     print('Testing the   problem1b   function:')
     print('--------------------------------------------------')
+
+    #Test 1:
+    expected = 2
+    actual = problem1b(4, 2)
+    print('Test 1 expected:', expected)
+    print('       actual:  ', actual)
+
+    #Test 2:
+    expected = 3
+    actual = problem1b(3, 3)
+    print('Test 2 expected:', expected)
+    print('       actual:  ', actual)
+
+    #Test 3:
+    expected = 6
+    actual = problem1b(5, 4)
+    print('Test 3 expected:', expected)
+    print('       actual:  ', actual)
+
+    #Test 4:
+    expected = 3
+    actual = problem1b(2, 3)
+    print('Test 4 expected:', expected)
+    print('       actual:  ', actual)
 
 
 def problem1b(m, f):
@@ -216,6 +265,86 @@ def problem1b(m, f):
       -- If m is 5 and f is 40, the correct answer is 44,
            since there are 44 primes between 5 and 200.
      """
+    # -------------------------------------------------------------------------
+    # DONE: 6. Implement and test this function.
+    #   Note that you should write its TEST function first (above).
+    #
+    ###########################################################################
+    # IMPORTANT:
+    #    **  For full credit you must appropriately
+    #    **  use (call) the   is_prime   function that is DEFINED ABOVE.
+    ###########################################################################
+    # -------------------------------------------------------------------------
+    # DIFFICULTY AND TIME RATINGS (see top of this file for explanation)
+    #    DIFFICULTY:      5
+    #    TIME ESTIMATE:   10 to 15 minutes.
+    # -------------------------------------------------------------------------
+
+    n = f * m
+    count = 0
+    for k in range(n-m):
+        if is_prime(k+m):
+            count = count + 1
+    return count
+
+
+
+
+def run_test_problem1c():
+    """ Tests the   problem1c   function. """
+    print()
+    print('--------------------------------------------------')
+    print('Testing the   problem1c   function:')
+    print('--------------------------------------------------')
+
+    format_string = '    problem1c( {} )'
+    test_results = [0, 0]  # Number of tests passed, failed.
+
+    # Test 1:
+    expected = 3
+    print_expected_result_of_test([10], expected, test_results, format_string)
+    actual = problem1c(10)
+    print_actual_result_of_test(expected, actual, test_results)
+
+    # Test 2:
+    expected = 6
+    print_expected_result_of_test([11], expected, test_results, format_string)
+    actual = problem1c(11)
+    print_actual_result_of_test(expected, actual, test_results)
+
+    # Test 3:
+    expected = 33
+    print_expected_result_of_test([25], expected, test_results, format_string)
+    actual = problem1c(25)
+    print_actual_result_of_test(expected, actual, test_results)
+
+    # Test 4:
+    expected = 2
+    print_expected_result_of_test([2], expected, test_results, format_string)
+    actual = problem1c(2)
+    print_actual_result_of_test(expected, actual, test_results)
+
+    # Test 5:
+    expected = 6
+    print_expected_result_of_test([3], expected, test_results, format_string)
+    actual = problem1c(3)
+    print_actual_result_of_test(expected, actual, test_results)
+
+    # Test 6:
+    expected = 19416
+    print_expected_result_of_test([10007], expected, test_results,
+                                  format_string)
+    actual = problem1c(10007)
+    print_actual_result_of_test(expected, actual, test_results)
+
+    # Test 7:
+    expected = 19416
+    print_expected_result_of_test([10008], expected, test_results,
+                                  format_string)
+    actual = problem1c(10008)
+    print_actual_result_of_test(expected, actual, test_results)
+
+    print_summary_of_test_results(test_results)
     # -------------------------------------------------------------------------
     # TODO: 6. Implement and test this function.
     #   Note that you should write its TEST function first (above).
