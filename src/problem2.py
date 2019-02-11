@@ -1,10 +1,9 @@
 """
 PRACTICE Exam 1, problem 2.
-
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Valerie Galluzzi, Mark Hays, Amanda Stouder, Aaron Wilkin,
-         their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues, and Kash.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -110,21 +109,21 @@ def problem2a(circle, rectangle, window):
     #    DIFFICULTY:      6
     #    TIME ESTIMATE:   10 to 15 minutes.
     # -------------------------------------------------------------------------
-
-    upper_right = rectangle.get_upper_right_corner()
-    lower_left = rectangle.get_lower_left_corner()
-    color = rectangle.__getattribute__('outline_color')
-
     circle.attach_to(window)
     rectangle.attach_to(window)
+
     window.render()
     window.continue_on_mouse_click()
-    line = rg.Line(upper_right, lower_left)
-    line.arrow = "last"
+
+    line = rg.Line(rectangle.get_upper_right_corner(), rectangle.get_lower_left_corner())
+    line.arrow = 'last'
     line.attach_to(window)
+
     window.render()
     window.continue_on_mouse_click()
-    circle.fill_color = color
+
+    circle.fill_color = rectangle.outline_color
+
     window.render()
 
 def run_test_problem2b():
@@ -163,7 +162,7 @@ def problem2b(rect, n, delta, win):
     """
     See   problem2b_picture.pdf   in this project for pictures
     that may help you better understand the following specification:
-    
+
     What comes in:
       -- An rg.Rectangle.
       -- A positive integer n.
@@ -181,7 +180,6 @@ def problem2b(rect, n, delta, win):
             to the corresponding line of the rg.Rectangle next to it
             is delta.  (See problem2b_picture.)
       Must render but   ** NOT close **   the window.
-
     Type hints:
       :type rect:   rg.Rectangle
       :type n:      int
@@ -189,7 +187,7 @@ def problem2b(rect, n, delta, win):
       :type win:    rg.RoseWindow
     """
     # -------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # -------------------------------------------------------------------------
     # -------------------------------------------------------------------------
@@ -197,6 +195,13 @@ def problem2b(rect, n, delta, win):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 to 25 minutes.
     # -------------------------------------------------------------------------
+    rect.attach_to(win)
+    for k in range(n):
+        new_c1 = rg.Point(rect.get_upper_left_corner().x - (k * delta), rect.get_upper_left_corner().y - (k * delta))
+        new_c2 = rg.Point(rect.get_lower_right_corner().x + (k * delta), rect.get_lower_right_corner().y + (k * delta))
+        new_rect = rg.Rectangle(new_c1, new_c2)
+        new_rect.attach_to(win)
+    win.render()
 
 
 # -----------------------------------------------------------------------------
